@@ -3,27 +3,37 @@ package kr.boot.basic.repository;
 import kr.boot.basic.domain.Member;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.*;
+
 // DAO
 @Repository
 public class MemoryMemberRepository implements MemberRepository{
+
+    private static Map<Long,Member> store = new HashMap<>();
+    private static long sequence = 0L;
+
     @Override
     public Member save(Member member) {
-        return null;
+        member.setId(++sequence);
+        store.put(member.getId(), member);
+        return member;
     }
 
     @Override
-    public Member findById(Long id) {
-        return null;
+    public Optional<Member> findById(Long id) {
+        return Optional.ofNullable(store.get(id));
     }
 
     @Override
-    public Member findByName(String name) {
-        return null;
+    public  Optional<Member> findByName(String name) {
+        return store.values()
+                .stream()
+                .filter(m -> m.getName().equals(name))
+                .findAny();
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return new ArrayList<>(store.values());
     }
 }
