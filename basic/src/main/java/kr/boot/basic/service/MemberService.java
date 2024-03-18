@@ -2,12 +2,11 @@ package kr.boot.basic.service;
 
 import kr.boot.basic.domain.Member;
 import kr.boot.basic.repository.MemberRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -17,7 +16,7 @@ public class MemberService {
 
 //    회원가입
     public boolean join(Member member){
-        if(!validateDuplicateMember(member)) {
+        if(validateDuplicateMember(member)) {
             memberRepository.save(member);
             return true;
         }else{
@@ -33,7 +32,7 @@ public class MemberService {
 //       }
 //        memberRepository.findById(member.getId())
 //                .ifPresent( m -> {throw new IllegalArgumentException("이미 존재하는 회원입니다");});
-        return memberRepository.findByName(member.getName()).isPresent();
+        return memberRepository.findByName(member.getName()).isEmpty();
     }
 
     // 전체 회원조회

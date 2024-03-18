@@ -1,12 +1,10 @@
 package kr.boot.basic.repository;
 
 import kr.boot.basic.domain.Member;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 // DAO
-@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long,Member> store = new HashMap<>();
