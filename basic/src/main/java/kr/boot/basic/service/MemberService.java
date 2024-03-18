@@ -16,11 +16,13 @@ public class MemberService {
     }
 
 //    회원가입
-    public void join(Member member){
+    public boolean join(Member member){
         if(!validateDuplicateMember(member)) {
             memberRepository.save(member);
+            return true;
         }else{
             System.out.println(" 이미 존재하는 회원 입니다 ");
+            return false;
         }
     }
 
