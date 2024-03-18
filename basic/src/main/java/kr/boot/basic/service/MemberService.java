@@ -4,6 +4,9 @@ import kr.boot.basic.domain.Member;
 import kr.boot.basic.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class MemberService {
 
@@ -21,14 +24,25 @@ public class MemberService {
         }
     }
 
-    // 아이디 중복검사
+    // 이름 중복검사
     private boolean validateDuplicateMember(Member member){
 //       if(memberRepository.findById(member.getId()) != null){
 //           throw new IllegalArgumentException("이미 존재하는 회원입니다");
 //       }
 //        memberRepository.findById(member.getId())
 //                .ifPresent( m -> {throw new IllegalArgumentException("이미 존재하는 회원입니다");});
-        return memberRepository.findById(member.getId()).isPresent();
+        return memberRepository.findByName(member.getName()).isPresent();
     }
+
+    // 전체 회원조회
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
+    }
+
+    // 회원 한명 조회
+    public Optional<Member> findOneMember(Long id){
+        return memberRepository.findById(id);
+    }
+
 
 }
