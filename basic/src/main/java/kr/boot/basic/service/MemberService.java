@@ -40,12 +40,12 @@ public class MemberService {
 //       }
 //        memberRepository.findById(member.getId())
 //                .ifPresent( m -> {throw new IllegalArgumentException("이미 존재하는 회원입니다");});
-        return memberRepository.findByName(member.getName()).isEmpty();
+        return memberRepository.findByName(member.getName()) == null;   // memberRepository.findByName(member.getName()).isEmpty();
     }
 
     // 전체 회원조회
     public List<Member> findMembers(){
-        return memberRepository.findAll();
+        return memberRepository.findAll();  // select * from members;
     }
 
     // 회원 한명 조회
