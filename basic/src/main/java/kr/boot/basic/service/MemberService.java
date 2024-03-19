@@ -2,18 +2,25 @@ package kr.boot.basic.service;
 
 import jakarta.transaction.Transactional;
 import kr.boot.basic.domain.Member;
-import kr.boot.basic.repository.MemberRepository;
+import kr.boot.basic.repository.SpringMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @Transactional
 public class MemberService {
 
-    private final MemberRepository memberRepository;
-    public MemberService(MemberRepository repository){
-        this.memberRepository = repository;
-    }
+    //private final MemberRepository memberRepository;
+
+    @Autowired
+    private SpringMemberRepository memberRepository;
+//    public MemberService(MemberRepository repository){
+//
+//        this.memberRepository = repository;
+//    }
 
 //    회원가입
     public boolean join(Member member){
