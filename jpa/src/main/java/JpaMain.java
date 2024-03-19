@@ -34,7 +34,8 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); // start transction;
         try {
-            
+          //  init(em);
+//
             Student findStudent = em.find(Student.class,1L);
             System.out.println("findStudent = " + findStudent);
 

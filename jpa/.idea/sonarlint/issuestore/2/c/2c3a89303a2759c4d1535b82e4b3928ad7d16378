@@ -1,5 +1,12 @@
 
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(“»Œüÿÿÿÿ8ìîÛ¬å1J$82f79091-87a3-48ac-85ca-23c74b0f1958
-ƒ	java:S125#"<This block of commented-out lines of code should be removed.(ô°”Èøÿÿÿÿ8ê£Â¬å1J$c8965af4-dc99-4714-8d06-c4110a4a7c0e
-r	java:S106'"+Replace this use of System.out by a logger.(™–¬ôıÿÿÿÿ8ë£Â¬å1J$eb65bbc4-6a49-4208-9ad8-473d9695757a
-l	java:S106*"+Replace this use of System.out by a logger.(¼“å!8ì£Â¬å1J$75b63f4c-0b82-4620-b0f6-60ef197ded7c
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(“»Œüÿÿÿÿ8ìîÛ¬å1J$8d74eb05-feee-40d8-83b1-ecf88b0d0f74
+ƒ	java:S125#"<This block of commented-out lines of code should be removed.(ô°”Èøÿÿÿÿ8ê£Â¬å1J$04fcbf13-dcaa-4e65-8509-2464d7c476b8
+ƒ	java:S125%"<This block of commented-out lines of code should be removed.(ÔÈ›°üÿÿÿÿ8•Îò¬å1J$3761673e-3482-44ce-9c15-32a1ae89f788
+L	java:S106("+Replace this use of System.out by a logger.(™–¬ôıÿÿÿÿ8Ûåò¬å1
+F	java:S106+"+Replace this use of System.out by a logger.(¼“å!8Ûåò¬å1
+o
+java:S1128",Remove this unused import 'entity.Customer'.(éş²¢8í¬å1J$2f2e26df-4ca9-4ea5-9bfa-232224d08e80
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8í¬å1J$8f74d6a8-b9e1-4e00-9ecd-d7a79449f36b
+s
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8í¬å1J$da716ab8-99f0-41c9-a3c4-86572a6dadca
