@@ -34,13 +34,16 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); // start transction;
         try {
-          //  init(em);
+             // init(em);
 //
             Student findStudent = em.find(Student.class,1L);
             System.out.println("findStudent = " + findStudent);
+            
+            Major major = findStudent.getMajor();
+            System.out.println("major.getCategory() = " + major.getCategory());
 
-            Major findMajor = em.find(Major.class, findStudent.getMajor());
-            System.out.println("findMajor = " + findMajor);
+//            Major findMajor = em.find(Major.class, findStudent.getMajor());
+//            System.out.println("findMajor = " + findMajor);
 
 
             tx.commit();
