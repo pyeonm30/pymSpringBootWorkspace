@@ -1,4 +1,5 @@
 import entity.Customer;
+import entity.Locker;
 import entity.Major;
 import entity.Student;
 
@@ -34,17 +35,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); // start transction;
         try {
-             // init(em);
-//
-            Student findStudent = em.find(Student.class,1L);
-            System.out.println("findStudent = " + findStudent);
-            
-            Major major = findStudent.getMajor();
-            System.out.println("major.getCategory() = " + major.getCategory());
-
-//            Major findMajor = em.find(Major.class, findStudent.getMajor());
-//            System.out.println("findMajor = " + findMajor);
-
+            Student stu = em.find(Student.class,1L);
+            Locker locker = new Locker(200);
+            stu.setLocker(locker); // locker_id
+            em.persist(locker);
 
             tx.commit();
 
