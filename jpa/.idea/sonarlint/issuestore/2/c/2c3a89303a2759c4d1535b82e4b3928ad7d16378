@@ -1,6 +1,5 @@
 
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(ô°”Èøÿÿÿÿ8í¶äªå1J$6b4ed5f2-0b62-4548-a28f-26d70145faed
-s
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ñ¶äªå1J$7a1a59cf-7892-43aa-984c-bf759ba1e004
-s
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ñ¶äªå1J$fc6869e5-7b1e-4b1c-b5a8-38a93952cd18
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(“»Œüÿÿÿÿ8ìîÛ¬å1J$82f79091-87a3-48ac-85ca-23c74b0f1958
+ƒ	java:S125#"<This block of commented-out lines of code should be removed.(ô°”Èøÿÿÿÿ8ê£Â¬å1J$c8965af4-dc99-4714-8d06-c4110a4a7c0e
+r	java:S106'"+Replace this use of System.out by a logger.(™–¬ôıÿÿÿÿ8ë£Â¬å1J$eb65bbc4-6a49-4208-9ad8-473d9695757a
+l	java:S106*"+Replace this use of System.out by a logger.(¼“å!8ì£Â¬å1J$75b63f4c-0b82-4620-b0f6-60ef197ded7c

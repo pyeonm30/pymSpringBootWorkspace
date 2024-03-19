@@ -17,7 +17,9 @@ public class Student {
     private Long stuentId;
     private String name;
     private String grade;
-    private Long majorId;
+    @ManyToOne  // 관계 구성
+    @JoinColumn(name="majorId")// 테이블 컬럼의 fk 명
+    private Major major;
 
     public Student(String name, String grade) {
         this.name = name;
