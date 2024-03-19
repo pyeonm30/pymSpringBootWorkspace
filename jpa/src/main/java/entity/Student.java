@@ -20,8 +20,8 @@ public class Student {
     private Major major;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
-    private Locker locker;
+    @JoinColumn( unique = true )  // 이름 안주면 클래스이름_id 로 생성됨
+    private Locker locker;  // locker_id 1를 누가 참조하고 있으면 다른 Student lock_id 1를 참조 불가
 
     public Student(String name, String grade) {
         this.name = name;

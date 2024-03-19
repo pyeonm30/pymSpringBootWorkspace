@@ -35,10 +35,16 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); // start transction;
         try {
-            Student stu = em.find(Student.class,1L);
-            Locker locker = new Locker(200);
-            stu.setLocker(locker); // locker_id
-            em.persist(locker);
+           // init(em);
+            Student stu = em.find(Student.class,2L);
+            Locker locker = em.find(Locker.class,3L);
+
+            stu.setLocker(locker);
+
+          //  Locker locker = new Locker(100);
+            //em.persist(locker); // @Id 값 받아오고 3
+           // stu.setLocker(locker); // locker_id = 3
+
 
             tx.commit();
 
