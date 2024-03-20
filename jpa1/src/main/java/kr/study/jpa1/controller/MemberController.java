@@ -38,6 +38,7 @@ public class MemberController {
             log.trace("member ={}" , member);
         }catch(Exception e){
             log.error("errMSG={}", e.getMessage());
+            // 에러페이지 이동
         }
 
         return "redirect:/";
