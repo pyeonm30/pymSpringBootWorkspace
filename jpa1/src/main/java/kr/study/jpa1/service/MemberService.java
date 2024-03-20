@@ -20,7 +20,6 @@ public class MemberService {
     @Transactional // 읽기 , 쓰기(삭제, 수정 )
     public Long join(Member member ) throws IllegalStateException{
         validateMemberId(member);
-        log.trace("=============");
         Member m = memberRepository.save(member);
         log.trace("savedmember ={}" ,m );
         return m.getId();
