@@ -1,12 +1,13 @@
 server:
-  port: 8084
+  port: 8083
   servlet:
     encoding:
       force-response: true
 
 logging:
   level:
-    com.boot.first: info
+    kr.study.jpa1: trace
+    #kr.study.jpa1.controller: trace
 
 spring:
   datasource:
