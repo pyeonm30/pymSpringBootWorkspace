@@ -16,12 +16,12 @@
     <div class="col">회원삭제1</div>
     <div class="col">회원삭제2</div>
   </div>
-  <th:block>
+  <th:block th:each="member :${list}">
     <div class="row mb-2">
-      <div class="col">아이디</div>
-      <div class="col">이름</div>
-      <div class="col">권한</div>
-      <div class="col">회원삭제1</div>
+      <div class="col" th:text="${member.loginId}">아이디</div>
+      <div class="col" th:text="${member.name}">이름</div>
+      <div class="col" th:text="${member.role}" >권한</div>
+      <div class="col" th:href="@{/member/{keyId}(keyId=${member.id})}">회원삭제1</div>
       <div class="col">회원삭제2</div>
   </div>
   </th:block>

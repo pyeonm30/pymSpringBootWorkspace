@@ -6,10 +6,13 @@ import kr.study.jpa1.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService service;
+    private final MemberService memberService;
 
     @GetMapping
     public String joinForm(){
@@ -34,7 +37,7 @@ public class MemberController {
                 .build();
 
         try {
-            service.join(member);
+            memberService.join(member);
             log.trace("member ={}" , member);
         }catch(Exception e){
             log.error("errMSG={}", e.getMessage());
@@ -43,4 +46,17 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+
+    @GetMapping("/members")
+    public String members(Model model){
+        List<Member> list = memberService.getList();
+        if(list == null){
+            return "redirect:/member"; // 회원가입부터 해라
+        }
+        model.addAttribute("list" , list);
+
+        return "member/list";
+    }
+
 }

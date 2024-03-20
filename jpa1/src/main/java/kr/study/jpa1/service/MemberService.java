@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -23,6 +25,10 @@ public class MemberService {
         Member m = memberRepository.save(member);
         log.trace("savedmember ={}" ,m );
         return m.getId();
+    }
+
+    public List<Member> getList(){
+        return memberRepository.findAll();
     }
 
     private void validateMemberId(Member member) throws IllegalStateException{

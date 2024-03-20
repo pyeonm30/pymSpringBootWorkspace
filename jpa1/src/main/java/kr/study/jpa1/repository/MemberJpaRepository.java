@@ -29,7 +29,7 @@ public class MemberJpaRepository implements MemberRepository{
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return em.createQuery("select m from Member m",Member.class).getResultList();
     }
 
     @Override
