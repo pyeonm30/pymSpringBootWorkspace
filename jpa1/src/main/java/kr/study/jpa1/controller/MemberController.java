@@ -56,11 +56,18 @@ public class MemberController {
         return "member/list";
     }
 
-    @GetMapping("{keyId}")
+    @GetMapping("/{keyId}")
     public String deleteMember(@PathVariable Long keyId){
         log.trace("keyid={}" , keyId);
         memberService.deleteMember(keyId);
         return "redirect:/member/members";
     }
+    @DeleteMapping("/{keyId}")
+    public @ResponseBody String deleteMemberAjax(@PathVariable Long keyId){
+        log.trace("keyid={}" , keyId);
+        memberService.deleteMember(keyId);
+        return "ok";
+    }
+
 
 }

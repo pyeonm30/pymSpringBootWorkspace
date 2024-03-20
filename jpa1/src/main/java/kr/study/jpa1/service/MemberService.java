@@ -37,7 +37,7 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원 아이디가 있습니다");
         }
     }
-
+    @Transactional
     public void deleteMember(Long id){
         memberRepository.deleteById(id);
     }

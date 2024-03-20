@@ -49,7 +49,7 @@ public class MemberJpaRepository implements MemberRepository{
     @Override
     public void deleteById(Long id) {
         // 삭제한 row 갯수=  int
-        int delCnt = em.createQuery("delete from Member m where m.id=:id",Member.class)
+        int delCnt = em.createQuery("delete from Member m where m.id=:id")
                 .setParameter("id",id).executeUpdate();
 
         if(delCnt == 0){
