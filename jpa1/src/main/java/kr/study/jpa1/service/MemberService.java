@@ -38,4 +38,7 @@ public class MemberService {
         }
     }
 
+    public void deleteMember(Long id){
+        memberRepository.deleteById(id);
+    }
 }

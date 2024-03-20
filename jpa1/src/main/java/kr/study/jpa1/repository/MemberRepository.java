@@ -10,6 +10,6 @@ public interface MemberRepository{
     List<Member> findAll();
     Member findById(Long id);
     Member findByLoginId(String loginId);
-    Member deleteById(Long id);
+    void deleteById(Long id);
 
 }
