@@ -39,7 +39,11 @@ public class MemberJpaRepository implements MemberRepository{
 
     @Override
     public Member findByLoginId(String loginId) {
-        return null;
+        List<Member> members = em.createQuery("select m from Member m where m.loginId=:loginId",Member.class)
+                .setParameter("loginId", loginId)
+                .getResultList();
+       // return members == null? null : members.get(0);
+        return members.stream().findAny().orElse(null); // 객체가 있으면 객체를 반환 아니면 null 리턴
     }
 
     @Override

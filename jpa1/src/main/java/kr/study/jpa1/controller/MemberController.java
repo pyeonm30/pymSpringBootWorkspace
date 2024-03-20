@@ -32,10 +32,13 @@ public class MemberController {
                 .loginId(form.getId())
                 .name(form.getName())
                 .build();
-        log.trace("member ={}" , member);
 
-        service.join(member);
-
+        try {
+            service.join(member);
+            log.trace("member ={}" , member);
+        }catch(Exception e){
+            log.error("errMSG={}", e.getMessage());
+        }
 
         return "redirect:/";
     }

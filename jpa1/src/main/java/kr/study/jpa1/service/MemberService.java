@@ -18,10 +18,19 @@ public class MemberService {
     private final MemberJpaRepository memberRepository;
 
     @Transactional // 읽기 , 쓰기(삭제, 수정 )
-    public Long join(Member member ){
+    public Long join(Member member ) throws IllegalStateException{
+        validateMemberId(member);
+        log.trace("=============");
         Member m = memberRepository.save(member);
         log.trace("savedmember ={}" ,m );
         return m.getId();
+    }
+
+    private void validateMemberId(Member member) throws IllegalStateException{
+        if(memberRepository.findByLoginId(member.getLoginId()) != null){
+
+            throw new IllegalStateException("이미 존재하는 회원 아이디가 있습니다");
+        }
     }
 
 }
