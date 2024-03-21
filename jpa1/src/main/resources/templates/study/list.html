@@ -24,7 +24,7 @@
     <div class="col" th:text="${record.member.name}">홍길동</div>
     <div class="col" th:text="|${record.studyDay} ${ record.startTime}|">2023-03-25</div>
     <div class="col" th:text="${record.studyMins}">30</div>
-    <div class="col" th:text="${record.getEndStudyDay()}">30</div>
+    <div class="col" th:text="${record.endStudyDay}">30</div>
     <div class="col" th:text="${record.contents}">30</div>
     <div class="col"><a th:href="@{/study/{keyId}(keyId=${record.studyId})}" class="btn btn-outline-info">수정</a></div>
     <div class="col"><button th:onclick="|deleteRecord(${record.studyId})|" class="btn btn-outline-danger">삭제</button></div>
