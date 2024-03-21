@@ -29,12 +29,12 @@ public class StudyRecordService {
     }
 
     public StudyRecode getOneRecord(Long id){
-        return recodeRepositroy.getById(id);
+        return recodeRepositroy.findById(id).get();
     }
 
     @Transactional
-    public void updateRecord( StudyForm form , Long id ){
-        StudyRecode updateRecode = StudyRecode.modyfiyRecord(form,id);
+    public void updateRecord( StudyForm form , StudyRecode recode ){
+        StudyRecode updateRecode = StudyRecode.modyfiyRecord(form, recode);
         recodeRepositroy.save(updateRecode);
 
     }

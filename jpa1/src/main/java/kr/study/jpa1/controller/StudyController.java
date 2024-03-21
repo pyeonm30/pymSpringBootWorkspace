@@ -82,11 +82,16 @@ public class StudyController {
         return "study/updateForm";
     }
 
-    @GetMapping("/update")
-    public String updateRecode(@ModelAttribute StudyForm form ,@RequestParam Long id){
+    @PostMapping("/update")
+    public String updateRecode(StudyForm form ,Long id){
         log.trace("form={}, id={}", form, id);
+        StudyRecode recode = recordService.getOneRecord(id);
+        log.trace("recode={}", recode);
+        recordService.updateRecord(form,recode);
 
-        return "redirect:/study/recodes";
+        return "redirect:/study/records";
     }
+
+
 
 }
