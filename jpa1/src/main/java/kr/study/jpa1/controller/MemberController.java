@@ -51,7 +51,7 @@ public class MemberController {
     public String members(Model model){
         List<Member> list = memberService.getList();
         log.trace("list.size ={}" , list.size());
-        if(list == null){
+        if(list == null|| list.size() ==0){
             return "redirect:/member"; // 회원가입부터 해라
         }
         model.addAttribute("list" , list);
