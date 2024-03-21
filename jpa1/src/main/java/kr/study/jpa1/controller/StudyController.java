@@ -58,8 +58,9 @@ public class StudyController {
         if(members == null){
             return "redirect:/";
         }
-
-        List<StudyRecode> list = recordService.getAllRecodes();
+        System.out.println("============================");
+        //List<StudyRecode> list = recordService.getAllRecodes();
+        List<StudyRecode> list = recordService.getAllRecodesFindAll();
         if(list == null){
             return "redirect:/";
         }
@@ -96,6 +97,12 @@ public class StudyController {
         return "redirect:/study/records";
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public String deleteRecode(@PathVariable Long id){
+        recordService.deleteRecord(id);
+        return "ok";
+    }
 
 
 }

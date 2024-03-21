@@ -28,6 +28,9 @@ public class StudyRecordService {
     public List<StudyRecode> getAllRecodes() {
         return recodeRepositroy.selectAll();
     }
+    public List<StudyRecode> getAllRecodesFindAll() {
+        return recodeRepositroy.findAll();
+    }
 
     public StudyRecode getOneRecord(Long id){
         Optional<StudyRecode> recode = recodeRepositroy.findById(id);
@@ -39,6 +42,22 @@ public class StudyRecordService {
         StudyRecode updateRecode = StudyRecode.modyfiyRecord(form, recode);
         recodeRepositroy.save(updateRecode);
 
+    }
+
+    @Transactional
+    public void deleteRecord(Long id){
+        recodeRepositroy.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteAllRecordByMember(Member member){
+        List<StudyRecode> list = recodeRepositroy.searchStudyRecodeByMemberId(member.getId());
+        if(list != null){
+            list.forEach(recode -> {
+                log.trace("delete recode={}" , recode);
+                recodeRepositroy.deleteByMember(recode.getMember());
+            });
+        }
     }
 
 }

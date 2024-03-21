@@ -31,6 +31,9 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member findById(Long id){
+        return memberRepository.findById(id);
+    }
     public Member findByLoginId(String loginId){
         return memberRepository.findByLoginId(loginId);
     }

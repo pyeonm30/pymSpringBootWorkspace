@@ -20,7 +20,7 @@ spring:
     prefix: classpath:/templates/
 
   jpa:
-    #show-sql: true
+    show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: mysql
     hibernate:

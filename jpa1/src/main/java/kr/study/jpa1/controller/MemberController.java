@@ -3,6 +3,7 @@ package kr.study.jpa1.controller;
 import kr.study.jpa1.domain.Member;
 import kr.study.jpa1.form.MemberForm;
 import kr.study.jpa1.service.MemberService;
+import kr.study.jpa1.service.StudyRecordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+    private final StudyRecordService recordService;
 
     @GetMapping
     public String joinForm(){
@@ -48,6 +50,7 @@ public class MemberController {
     @GetMapping("/members")
     public String members(Model model){
         List<Member> list = memberService.getList();
+        log.trace("list.size ={}" , list.size());
         if(list == null){
             return "redirect:/member"; // 회원가입부터 해라
         }
@@ -59,12 +62,17 @@ public class MemberController {
     @GetMapping("/{keyId}")
     public String deleteMember(@PathVariable Long keyId){
         log.trace("keyid={}" , keyId);
+        Member delMember = memberService.findById(keyId);
+        recordService.deleteAllRecordByMember(delMember);
         memberService.deleteMember(keyId);
+
         return "redirect:/member/members";
     }
     @DeleteMapping("/{keyId}")
     public @ResponseBody String deleteMemberAjax(@PathVariable Long keyId){
         log.trace("keyid={}" , keyId);
+        Member delMember = memberService.findById(keyId);
+        recordService.deleteAllRecordByMember(delMember);
         memberService.deleteMember(keyId);
         return "ok";
     }
