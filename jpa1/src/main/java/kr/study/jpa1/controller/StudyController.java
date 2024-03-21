@@ -87,6 +87,10 @@ public class StudyController {
         log.trace("form={}, id={}", form, id);
         StudyRecode recode = recordService.getOneRecord(id);
         log.trace("recode={}", recode);
+        if(recode == null){
+            log.error("msg={}", "레코드 값 못찾음");
+            return "redirect:/";
+        }
         recordService.updateRecord(form,recode);
 
         return "redirect:/study/records";
