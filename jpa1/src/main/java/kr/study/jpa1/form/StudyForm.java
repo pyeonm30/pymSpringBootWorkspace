@@ -20,4 +20,7 @@ public class StudyForm {
     private String contents;
 //    @OneToMany(mappedBy = "member")
 //    private List<Record> records;
+
+
+
 }

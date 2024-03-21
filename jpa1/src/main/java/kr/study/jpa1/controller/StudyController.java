@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -69,5 +67,26 @@ public class StudyController {
 
         return "study/list";
     }
-    
+
+    @GetMapping("/{keyId}")
+    public String updateForm(@PathVariable Long keyId, Model model){
+        StudyRecode record = recordService.getOneRecord(keyId);
+        log.trace("record={}" , record);
+        if(record == null){
+            return "redirect:/";
+        }
+
+        model.addAttribute("record", record);
+        model.addAttribute("curdate", LocalDate.now());
+
+        return "study/updateForm";
+    }
+
+    @GetMapping("/update")
+    public String updateRecode(@ModelAttribute StudyForm form ,@RequestParam Long id){
+        log.trace("form={}, id={}", form, id);
+
+        return "redirect:/study/recodes";
+    }
+
 }

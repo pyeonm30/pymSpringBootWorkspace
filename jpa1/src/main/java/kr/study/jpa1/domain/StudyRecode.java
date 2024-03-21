@@ -54,6 +54,14 @@ public class StudyRecode {
 
         return data;
     }
-
+    public static StudyRecode modyfiyRecord(StudyForm form, Long id) {
+        StudyRecode recode = new StudyRecode();
+        recode.studyId = id;
+        recode.studyDay =  form.getStudyDay();
+        recode.startTime = form.getStartTime();
+        recode.studyMins = form.getStudyMins();
+        recode.contents = form.getContents();
+        return recode;
+    }
 
 }
