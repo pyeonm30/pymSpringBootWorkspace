@@ -31,6 +31,10 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member findByLoginId(String loginId){
+        return memberRepository.findByLoginId(loginId);
+    }
+
     private void validateMemberId(Member member) throws IllegalStateException{
         if(memberRepository.findByLoginId(member.getLoginId()) != null){
 
