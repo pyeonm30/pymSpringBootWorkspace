@@ -56,13 +56,18 @@ public class StudyController {
     
     @GetMapping("/records")
     public String getAllList(Model model){
-        List<StudyRecode> list = recordService.getAllRecodes();
-        
-        for(StudyRecode studyRecode : list){
-            System.out.println("studyRecode = " + studyRecode);
+        List<Member> members = memberService.getList();
+        if(members == null){
+            return "redirect:/";
         }
-        
-        return "redirect:/"; 
+
+        List<StudyRecode> list = recordService.getAllRecodes();
+        if(list == null){
+            return "redirect:/";
+        }
+        model.addAttribute("list", list);
+
+        return "study/list";
     }
     
 }

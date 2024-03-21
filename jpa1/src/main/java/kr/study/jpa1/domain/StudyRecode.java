@@ -5,14 +5,17 @@ import kr.study.jpa1.form.StudyForm;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)  // jpa 만 내 객체를 생성할 수 있게
 @Entity
+@ToString
 public class StudyRecode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +26,7 @@ public class StudyRecode {
     private int studyMins; // 40
     @Lob
     private String contents;
+
     // fk 값을 가지는가? (member_id),  == 연관관계의 주인 == @ManyToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="memberId")
@@ -40,6 +44,15 @@ public class StudyRecode {
         recode.contents = form.getContents();
 
         return recode;
+    }
+
+    public String getEndStudyDay(){
+        String pattern = "yyyy/MM/dd HH:mm";
+        LocalDateTime endStudyTime = LocalDateTime.of(this.studyDay, this.startTime);
+        endStudyTime = endStudyTime.plusMinutes(this.studyMins);
+        String data =  endStudyTime.format(DateTimeFormatter.ofPattern(pattern));
+
+        return data;
     }
 
 
