@@ -7,10 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.sql.Timestamp;
 @Entity
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +20,11 @@ public class User {
     @CreationTimestamp
     private Timestamp createDate;
 
-
+    @Builder
+    public Users(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = RoleUser.USER;
+    }
 }
