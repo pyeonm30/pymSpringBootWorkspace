@@ -1,17 +1,13 @@
 package kr.ex.querydsl;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import kr.ex.querydsl.domain.Member;
-import kr.ex.querydsl.domain.MemberDto;
-import kr.ex.querydsl.domain.QMember;
-import kr.ex.querydsl.domain.Team;
+import kr.ex.querydsl.entity.Member;
+import kr.ex.querydsl.dto.MemberDto;
+import kr.ex.querydsl.entity.Team;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static kr.ex.querydsl.domain.QMember.member;
-import static kr.ex.querydsl.domain.QTeam.team;
+import static kr.ex.querydsl.entity.QMember.member;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
@@ -58,7 +53,7 @@ public class QuerDslTest3 {
     @Test
     void dtoByJQPL(){
         List<MemberDto> result = em.createQuery(
-                        "select new kr.ex.querydsl.domain.MemberDto(m.username, m.age) " +
+                        "select new kr.ex.querydsl.entity.MemberDto(m.username, m.age) " +
                                 "from Member m", MemberDto.class)
                 .getResultList();
     }

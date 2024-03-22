@@ -1,4 +1,4 @@
-package kr.ex.querydsl.domain;
+package kr.ex.querydsl.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 

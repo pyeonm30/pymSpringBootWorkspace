@@ -1,8 +1,8 @@
-package kr.ex.querydsl.domain;
-
-import com.querydsl.core.types.dsl.*;
+package kr.ex.querydsl.entity;
 
 import com.querydsl.core.types.ConstructorExpression;
+import kr.ex.querydsl.dto.MemberTeamDto;
+
 import javax.annotation.processing.Generated;
 
 /**
