@@ -6,6 +6,7 @@ import kr.ex.querydsl.dto.MemberTeamDto;
 import kr.ex.querydsl.dto.QMemberTeamDto;
 import kr.ex.querydsl.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import static kr.ex.querydsl.entity.QMember.member;
 import static kr.ex.querydsl.entity.QTeam.team;
 import static org.springframework.util.StringUtils.hasText;
 
+@Repository
 public interface MemberRepository extends JpaRepository<Member, Long> , MemberCusRepository{
 
     List<Member> findByUsername(String name);
