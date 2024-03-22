@@ -61,5 +61,11 @@ public class HomeController {
         return "user";
     }
 
+    @GetMapping("/auth/login")
+    public @ResponseBody String login(String error, String exception){
+        log.error("error ={} , excepiton={}", error, exception);
+        return exception.toString();
+    }
+
 
 }
