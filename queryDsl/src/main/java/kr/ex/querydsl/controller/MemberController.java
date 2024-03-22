@@ -31,7 +31,7 @@ public class MemberController {
         return "회원생성 완료";
     }
 
-    @GetMapping("/member")
+    @GetMapping("/member")   // /member?username=박연미
     public String findByUsername(@RequestParam(name="username") String username){
         log.trace("username={}" , username);
         Member findMember = null;
@@ -40,7 +40,14 @@ public class MemberController {
         }
         return findMember == null?"해당 이름 회원없음" : findMember.toString();
     }
-    @GetMapping("/member/{id}")
+//    @GetMapping("/member/{username}")  // /member/1
+//    public String findByUsername2(@PathVariable(name="username") String username){
+//        log.trace("username={}" , username);
+//        return "ok";
+//    }
+
+
+    @GetMapping("/member/{id}")  // /member/1
     public String findByUsername(@PathVariable(name="id") Long id){
         log.trace("id={}" , id);
         Optional<Member> findMember = memberRepository.findById(id);
