@@ -21,7 +21,8 @@ public class MemberController {
     }
     @GetMapping("/members")
     public List<Member> allMembers(){
-        List<Member> memberlist= memberRepository.findAll();
+        //List<Member> memberlist= memberRepository.findAll();
+        List<Member> memberlist= memberRepository.findAll_QueryDsl();
         return memberlist;
     }
 
@@ -35,8 +36,10 @@ public class MemberController {
     public String findByUsername(@RequestParam(name="username") String username){
         log.trace("username={}" , username);
         Member findMember = null;
-        if(memberRepository.findByUsername(username).size()> 0 ){
-            findMember = memberRepository.findByUsername(username).get(0);
+        if(memberRepository.findByUsername_QueryDsl(username).size()> 0 ){
+       // if(memberRepository.findByUsername(username).size()> 0 ){
+           // findMember = memberRepository.findByUsername(username).get(0);
+            findMember =memberRepository.findByUsername_QueryDsl(username).get(0);
         }
         return findMember == null?"해당 이름 회원없음" : findMember.toString();
     }

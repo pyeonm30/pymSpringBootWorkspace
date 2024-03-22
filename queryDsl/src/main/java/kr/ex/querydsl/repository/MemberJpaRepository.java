@@ -60,7 +60,7 @@ public class MemberJpaRepository {
                 .where(member.username.eq(username))
                 .fetch();
     }
-    
+
 
 
 
