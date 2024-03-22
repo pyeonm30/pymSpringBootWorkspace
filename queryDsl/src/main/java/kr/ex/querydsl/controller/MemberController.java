@@ -7,6 +7,8 @@ import kr.ex.querydsl.repository.MemberJpaRepository;
 import kr.ex.querydsl.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,6 +75,18 @@ public class MemberController {
         log.trace("condition={}", condition);
         return memberRepository.search(condition);
 
+    }
+
+    @GetMapping("/member/page1")
+    public Page<MemberTeamDto> searchMember3(MemberSearchCond conditon, Pageable pageable){
+        System.out.println("========================== paging 1 ===================");
+        return memberRepository.searchPageSimple(conditon, pageable);
+    }
+
+    @GetMapping("/member/page2")
+    public Page<MemberTeamDto> searchMember4(MemberSearchCond conditon, Pageable pageable){
+        System.out.println("========================== paging 1 ===================");
+        return memberRepository.searchPageComplex(conditon, pageable);
     }
 
 
