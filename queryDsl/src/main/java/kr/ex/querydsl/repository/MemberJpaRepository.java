@@ -5,6 +5,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import kr.ex.querydsl.dto.MemberSearchCond;
 import kr.ex.querydsl.dto.MemberTeamDto;
+import kr.ex.querydsl.dto.QMemberTeamDto;
 import kr.ex.querydsl.entity.Member;
 import kr.ex.querydsl.entity.QMember;
 import kr.ex.querydsl.entity.QTeam;

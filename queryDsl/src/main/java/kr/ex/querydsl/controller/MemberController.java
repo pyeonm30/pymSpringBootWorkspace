@@ -1,5 +1,7 @@
 package kr.ex.querydsl.controller;
 
+import kr.ex.querydsl.dto.MemberSearchCond;
+import kr.ex.querydsl.dto.MemberTeamDto;
 import kr.ex.querydsl.entity.Member;
 import kr.ex.querydsl.repository.MemberJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +57,13 @@ public class MemberController {
         log.trace("id={}" , id);
         Optional<Member> findMember = memberRepository.findById(id);
         return findMember.isEmpty()?"해당 번호 회원없음" : findMember.toString();
+    }
+
+
+    @GetMapping("/member/search")
+    public List<MemberTeamDto> searchMember(MemberSearchCond condition){
+        return memberRepository.searchByBuilder(condition);
+
     }
 
 
