@@ -26,4 +26,9 @@ public class Users {
         this.password = password;
         this.email = email;
     }
+
+    //OAuth 를 위해 추가하는 필드
+    private String provider;
+    private String providerId;
+
 }
