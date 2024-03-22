@@ -42,7 +42,7 @@ public class MemberJpaRepository {
     }
 
     ///------------- QueryDSL 사용
-    
+
 
 
 }

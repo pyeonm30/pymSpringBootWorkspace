@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class QueryDslApplication {
-
+  // 스프링 빈 컨테이너에 우리가 직접 등록
     @Bean
     JPAQueryFactory jpaQueryFactory(EntityManager em){
         return new JPAQueryFactory(em);
