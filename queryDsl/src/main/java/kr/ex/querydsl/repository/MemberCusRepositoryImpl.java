@@ -104,7 +104,7 @@ public class MemberCusRepositoryImpl implements MemberCusRepository{
                 .where(usernameEq(condition.getUsername()),
                         teamNameEq(condition.getTeamName()),
                         ageGoe(condition.getAgeGoe()),
-                        ageLoe(condition.getAgeLoe()))
+                        ageLoe(condition.getAgeLoe()))     //?page=숫자값&size=숫자값
                 .offset(pageable.getOffset())  // 몇번째부터 조회할꺼야
                 .limit(pageable.getPageSize()) // 몇개까지 조회할꺼야
                 .fetchResults();

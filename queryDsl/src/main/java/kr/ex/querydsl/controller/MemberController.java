@@ -85,7 +85,7 @@ public class MemberController {
 
     @GetMapping("/member/page2")
     public Page<MemberTeamDto> searchMember4(MemberSearchCond conditon, Pageable pageable){
-        System.out.println("========================== paging 1 ===================");
+        System.out.println("========================== paging 2 ===================");
         return memberRepository.searchPageComplex(conditon, pageable);
     }
 
