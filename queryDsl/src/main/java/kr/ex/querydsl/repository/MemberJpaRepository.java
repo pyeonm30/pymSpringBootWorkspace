@@ -22,6 +22,7 @@ public class MemberJpaRepository {
 //        this.queryFactory =  new JPAQueryFactory(em);
 //    }
 
+    @Transactional
     public void save(Member member){
         em.persist(member);
     }
