@@ -10,6 +10,8 @@ public class MemberTeamDto {
     private int age;
     private Long teamId;
     private String teamName;
+
+    // 해당 dto가  queryDsl 의존하게된다 ==> projection.constructor()
     @QueryProjection
     public MemberTeamDto(Long memberId, String username, int age, Long teamId,
                          String teamName) {

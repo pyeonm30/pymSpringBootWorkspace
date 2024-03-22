@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -75,8 +76,8 @@ public class QuerDslTest3 {
     public void 동적쿼리_BooleanBuilder() throws Exception {
         String usernameParam = "member1";
         Integer ageParam = null;
-        List<Member> result = searchMember1(usernameParam, ageParam);
-        
+       // List<Member> result = searchMember1(usernameParam, ageParam);
+        List<Member> result = searchMember3(usernameParam, ageParam);
         result.forEach(m -> System.out.println("m = " + m));
         
         Assertions.assertThat(result.size()).isEqualTo(1);
@@ -94,37 +95,52 @@ public class QuerDslTest3 {
                 .where(builder)
                 .fetch();
     }
-
-
-
-    //회원명, 팀명, 나이(ageGoe, ageLoe)
-    public List<MemberTeamDto> search(MemberSearchCondition condition) {
-        return queryFactory
-                .select(new QMemberTeamDto(
-                        member.id,
-                        member.username,
-                        member.age,
-                        team.id,
-                        team.name))
-                .from(member)
-                .leftJoin(member.team, team)
-                .where(usernameEq(condition.getUsername()),
-                        teamNameEq(condition.getTeamName()),
-                        ageGoe(condition.getAgeGoe()),
-                        ageLoe(condition.getAgeLoe()))
+    private List<Member> searchMember2(String usernameCond, Integer ageCond) {
+        return query
+                .selectFrom(member)
+                .where(usernameEq(usernameCond), ageEq(ageCond))
                 .fetch();
     }
-    private BooleanExpression usernameEq(String username) {
-        return isEmpty(username) ? null : member.username.eq(username);
+
+    private List<Member> searchMember3(String usernameCond, Integer ageCond) {
+        return query
+                .selectFrom(member)
+                .where(usernameEq(usernameCond), ageEq(ageCond), member.age.goe(10))
+                .fetch();
     }
-    private BooleanExpression teamNameEq(String teamName) {
-        return isEmpty(teamName) ? null : team.name.eq(teamName);
+
+    private BooleanExpression usernameEq(String usernameCond) {
+        return usernameCond != null ? member.username.eq(usernameCond) : null;
     }
-    private BooleanExpression ageGoe(Integer ageGoe) {
-        return ageGoe == null ? null : member.age.goe(ageGoe);
+    private BooleanExpression ageEq(Integer ageCond) {
+        return ageCond != null ? member.age.eq(ageCond) : null;
     }
-    private BooleanExpression ageLoe(Integer ageLoe) {
-        return ageLoe == null ? null : member.age.loe(ageLoe);
+
+    @Test
+    @Commit
+    public void bulkUpdate(){
+        // 벌크 연산 => 한꺼번에 수정, 삭제 => 바로 db로 쿼리를 날린다 flush() 한다
+//        long count = query
+//                .update(member)
+//                .set(member.username, "비회원")
+//                .where(member.age.lt(28))
+//                .execute();
+
+        long count = query
+                .delete(member)
+                .where(member.age.gt(18))
+                .execute();
+
+        // 영속성 컨테이너 초기화
+        //em.flush();
+       // em.clear();
+
+        List<Member> list = query.selectFrom(member).fetch();
+        list.forEach( m -> System.out.println("m = " + m));
+
+        Assertions.assertThat(count).isEqualTo(2);
     }
+
+
 
 }
