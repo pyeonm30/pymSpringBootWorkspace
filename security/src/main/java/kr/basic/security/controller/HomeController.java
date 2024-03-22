@@ -1,9 +1,11 @@
 package kr.basic.security.controller;
 
+import kr.basic.security.auth.PrincipalDetails;
 import kr.basic.security.entity.Users;
 import kr.basic.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,8 +44,11 @@ public class HomeController {
     }
     @GetMapping("/test")
     @ResponseBody
-    public String test(){
-        return "test";
+    public PrincipalDetails test(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        if(principalDetails == null){
+            return null;
+        }
+        return principalDetails;
     }
     @GetMapping("/admin")
     @ResponseBody

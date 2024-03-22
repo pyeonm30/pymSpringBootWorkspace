@@ -40,7 +40,7 @@ public class SecurityConfig {
                     form.loginPage("/loginForm")   // 우리가 만든 로그인페이지로 자동 인터셉트됨
                         .loginProcessingUrl("/login")
                             .failureHandler(customAuthFailureHandler())
-                            .defaultSuccessUrl("/");  // 로그인 성공하면 돌아올 페이지
+                            .defaultSuccessUrl("/",true);  // 로그인 성공하면 돌아올 페이지
 
                 }
         );
