@@ -3,12 +3,15 @@ package kr.ex.querydsl.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import kr.ex.querydsl.entity.Member;
+import kr.ex.querydsl.entity.QMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+
+import static kr.ex.querydsl.entity.QMember.member;
 
 @Repository
 @Transactional(readOnly = true)
@@ -43,6 +46,21 @@ public class MemberJpaRepository {
     }
 
     ///------------- QueryDSL 사용
+
+    public List<Member> findAll_QueryDsl(){
+        // QMemer.member -> alt+enter -> static 변수로 만들 수 있음
+        return queryFactory
+                .selectFrom(member)
+                .fetch();
+    }
+
+    public List<Member> findByUsername_QueryDsl(String username){
+        return queryFactory
+                .selectFrom(member)
+                .where(member.username.eq(username))
+                .fetch();
+    }
+    
 
 
 
