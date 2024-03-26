@@ -1,13 +1,15 @@
 package kr.basic.security.controller;
 
-import kr.basic.security.auth.PrincipalDetails;
+import kr.basic.security.config.auth.PrincipalDetails;
 import kr.basic.security.entity.RoleUser;
 import kr.basic.security.entity.Users;
 import kr.basic.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,11 +43,11 @@ public class HomeController {
 
         int num = new Random().nextInt(0,2);
         if(num == 0){
-            user.setRole(RoleUser.USER);
+            user.setRole(RoleUser.ROLE_MANAGER);
         }else if(num == 1){
-            user.setRole(RoleUser.MANAGER);
+            user.setRole(RoleUser.ROLE_USER);
         }else{
-            user.setRole(RoleUser.ADMIN);
+            user.setRole(RoleUser.ROLE_ADMIN);
         }
 
         String initPassword = user.getPassword();
@@ -83,6 +85,17 @@ public class HomeController {
     public @ResponseBody String login(String error, String exception){
         log.error("error ={} , excepiton={}", error, exception);
         return exception.toString();
+    }
+
+    @GetMapping("/test/oauth")
+    public @ResponseBody  OAuth2User testLogin(Authentication authentication,
+                                          @AuthenticationPrincipal OAuth2User oauth){
+        if(authentication == null){
+            return null;
+        }
+        OAuth2User oAuth2User2 = (OAuth2User)authentication.getPrincipal();
+        log.error("oauth = {}" ,oauth);
+        return oAuth2User2;
     }
 
 

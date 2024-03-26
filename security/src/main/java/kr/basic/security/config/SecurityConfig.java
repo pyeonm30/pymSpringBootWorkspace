@@ -1,7 +1,10 @@
 package kr.basic.security.config;
 
+import kr.basic.security.config.oauth.PrincipalOauth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -11,8 +14,10 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 @Configuration
 @EnableWebSecurity  // 우리 웹 필터에 시큐리티 필터를 적용해줌
+@RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final PrincipalOauth2UserService principalOauth2UserService;
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web)->{
@@ -43,7 +48,14 @@ public class SecurityConfig {
                             .defaultSuccessUrl("/",true);  // 로그인 성공하면 돌아올 페이지
 
                 }
-        );
+        ).oauth2Login(Customizer.withDefaults());
+//        ).oauth2Login(httpSecurityOAuth2LoginConfigurer -> {
+//            httpSecurityOAuth2LoginConfigurer.loginPage("/loginForm")
+//                    // 구글이 로그인 완료 후  후처리 .... 강제 회원가입
+//                    .userInfoEndpoint(userInfoEndpointConfig -> {
+//                        userInfoEndpointConfig.userService(principalOauth2UserService);
+//                    });
+//        });
 
         return http.build();
     }

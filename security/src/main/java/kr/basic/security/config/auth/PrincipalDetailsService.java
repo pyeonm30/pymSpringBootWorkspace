@@ -1,4 +1,4 @@
-package kr.basic.security.auth;
+package kr.basic.security.config.auth;
 
 import kr.basic.security.entity.Users;
 import kr.basic.security.repository.UserRepository;
