@@ -63,7 +63,8 @@ class StockServiceTest {
 
         }
 
-        latch.await();
+        latch.await();  // 모든 요청이 끝날때까지 대기 -- 밑에줄 실행 안함
+
         Stock stock = repository.findById(1L).orElseThrow();
         System.out.println("stock = " + stock);
         Assertions.assertThat(stock.getQuantity()).isEqualTo(0);
