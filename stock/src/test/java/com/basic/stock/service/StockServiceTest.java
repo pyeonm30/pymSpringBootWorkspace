@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class StockServiceTest {
 
     @Autowired
-    private StockService service;
+    private OptimisticLockStockService service;
     @Autowired
     private StockRepository repository;
 
