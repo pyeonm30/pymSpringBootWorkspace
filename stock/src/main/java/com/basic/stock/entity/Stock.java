@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +16,11 @@ public class Stock {
 
     private Long productId; // 상품 id
     private Long quantity; // 수량
+
+    public Stock(Long productId, Long quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
+    }
 
     public Long getQuantity(){
         return quantity;
