@@ -16,7 +16,8 @@ public class StockService {
     // 스톡 추가 ..
     // 스톡 삭제 ...
     // propagation =  Propagation.REQUIRES_NEW  : 에러가 전파가 안되고 자식만 따로 트랜잭션 열어서 실행하겠다
-    @Transactional(propagation =  Propagation.REQUIRES_NEW)  // 트렉잭션을 새로 열여서(새로운 em 메니저, 영속성컨택스트) 시도한다
+   // @Transactional(propagation =  Propagation.REQUIRES_NEW)  // 트렉잭션을 새로 열여서(새로운 em 메니저, 영속성컨택스트) 시도한다
+    @Transactional
     public void decreaseStock(Long id, Long quantity){
 
         // stock 조회

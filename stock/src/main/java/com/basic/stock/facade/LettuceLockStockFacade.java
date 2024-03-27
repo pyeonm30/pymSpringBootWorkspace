@@ -20,6 +20,7 @@ public class LettuceLockStockFacade {
 
         // 락을 획득할때까지 반복문 돌리기
         while(!repository.lock(id)){
+            //System.out.println("test");
             Thread.sleep(100); // 좀 쉬었다가 다시 lock 획득 시도해
         }
 
