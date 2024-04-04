@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final CustomSuccessHandler customSuccessHandler;
     private final PrincipalOauth2UserService principalOauth2UserService;
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
@@ -45,17 +46,18 @@ public class SecurityConfig {
                     form.loginPage("/loginForm")   // 우리가 만든 로그인페이지로 자동 인터셉트됨
                         .loginProcessingUrl("/login")
                             .failureHandler(customAuthFailureHandler())
-                            .defaultSuccessUrl("/",true);  // 로그인 성공하면 돌아올 페이지
+                            .successForwardUrl("/test");
+
 
                 }
-        ).oauth2Login(Customizer.withDefaults());
-//        ).oauth2Login(httpSecurityOAuth2LoginConfigurer -> {
-//            httpSecurityOAuth2LoginConfigurer.loginPage("/loginForm")
-//                    // 구글이 로그인 완료 후  후처리 .... 강제 회원가입
-//                    .userInfoEndpoint(userInfoEndpointConfig -> {
-//                        userInfoEndpointConfig.userService(principalOauth2UserService);
-//                    });
-//        });
+        ).oauth2Login(
+                oauth2 -> oauth2
+                        .loginPage("/loginForm")
+                        .successHandler(customSuccessHandler)
+                        .failureHandler(customAuthFailureHandler())
+                        .permitAll()
+
+        );
 
         return http.build();
     }
